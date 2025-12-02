@@ -2,17 +2,24 @@ include: package:flutter_lints/flutter.yaml
 
 analyzer:
   errors:
-    # Turn on stricter rules
+    # Turn warnings into errors
     prefer_const_constructors: error
     prefer_const_literals_to_create_immutables: error
     unnecessary_const: error
-    avoid_print: warning  # Use Logger instead of print()
+    avoid_print: warning  # Start as warning, change to error later
+
+  # Language strictness for type safety
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
 
   # Exclude generated files
   exclude:
     - '**/*.g.dart'
     - '**/*.freezed.dart'
     - '**/*.gr.dart'
+    - 'build/**'
 
 linter:
   rules:
