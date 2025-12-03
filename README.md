@@ -15,3 +15,4 @@ added the app constants file
 added the storage constants file
 
 # models/-datamodels
+created the model for the user details
