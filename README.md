@@ -16,3 +16,5 @@ added the storage constants file
 
 # models/-datamodels
 created the model for the user details
+there is a challenge where how to use the null section
+it has been solved and rectified
