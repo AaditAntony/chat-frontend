@@ -28,3 +28,5 @@ this was the line
       id: json['id'] as int?,
     );
   }
+
+# dto/-registerresponse
