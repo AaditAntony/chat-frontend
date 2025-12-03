@@ -12,3 +12,4 @@ changed the analysis option file
 
 # constants
 added the app constants file
+added the storage constants file
