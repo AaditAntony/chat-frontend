@@ -41,3 +41,5 @@ updated the code for the login response
 
 # model/-MessageModel
 added the code for the model in the message model 
+
+#  model/-privateMessageModel
