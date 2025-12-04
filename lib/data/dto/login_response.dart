@@ -1,10 +1,9 @@
-class LoginResponse {
-  final String token;
+import 'token_response.dart';
 
-  LoginResponse({
-    required this.token,
-  });
+class LoginResponse extends TokenResponse {
+  LoginResponse({required super.token});
 
+  // Keep the fromJson factory
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return LoginResponse(
       token: json['token'] as String,
