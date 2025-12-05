@@ -46,3 +46,4 @@ added the code for the model in the message model
 added the code for the model in the private message model section
 
 # core/service/-storageService
+added the storage serive in the service section of the core storage
