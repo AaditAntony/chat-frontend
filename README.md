@@ -96,3 +96,5 @@ warning • Don't invoke 'print' in production code • lib/main.dart:49:7 • a
 
 # core/service/-apiService
 the apiService section is added in the service of the core section
+
+# core/service/-auth_service 
