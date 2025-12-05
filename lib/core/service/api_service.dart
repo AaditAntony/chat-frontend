@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
-
 import '../constants/app_constants.dart';
-
 
 class ApiService {
   late Dio _dio;
@@ -30,18 +28,30 @@ class ApiService {
   }
 
   // Generic GET request
-  Future<Response> get(String endpoint, {Map<String, dynamic>? queryParams}) async {
+  Future<Response<Map<String, dynamic>>> get(
+      String endpoint, {
+        Map<String, dynamic>? queryParams,
+      }) async {
     try {
-      return await _dio.get(endpoint, queryParameters: queryParams);
+      return await _dio.get<Map<String, dynamic>>(
+        endpoint,
+        queryParameters: queryParams,
+      );
     } catch (e) {
       rethrow;
     }
   }
 
   // Generic POST request
-  Future<Response> post(String endpoint, {dynamic data}) async {
+  Future<Response<Map<String, dynamic>>> post(
+      String endpoint, {
+        dynamic data,
+      }) async {
     try {
-      return await _dio.post(endpoint, data: data);
+      return await _dio.post<Map<String, dynamic>>(
+        endpoint,
+        data: data,
+      );
     } catch (e) {
       rethrow;
     }
