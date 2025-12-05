@@ -7,7 +7,7 @@ these are the dependency i have added
 # change-analysis-option-file
 changed the anasysis option file 
 
-# # change-analysis-option-file-2
+# change-analysis-option-file-2
 changed the analysis option file
 
 # constants
@@ -50,3 +50,46 @@ added the storage serive in the service section of the core storage
 
 # test-storage
 added the code for the test storage in main.dart
+after running this command i got the result 
+aaditantony@aadits-MacBook-Pro chat % flutter analyze
+Resolving dependencies... 
+Downloading packages... 
+  _fe_analyzer_shared 85.0.0 (92.0.0 available)
+  analyzer 7.6.0 (9.0.0 available)
+  analyzer_buffer 0.1.10 (0.1.11 available)
+  analyzer_plugin 0.13.4 (0.13.11 available)
+  build 3.1.0 (4.0.3 available)
+  build_resolvers 3.0.3 (3.0.4 available)
+  build_runner 2.7.1 (2.10.4 available)
+  build_runner_core 9.3.1 (9.3.2 available)
+  characters 1.4.0 (1.4.1 available)
+  custom_lint 0.8.0 (0.8.1 available)
+  custom_lint_builder 0.8.0 (0.8.1 available)
+  custom_lint_core 0.8.0 (0.8.1 available)
+  custom_lint_visitor 1.0.0+7.7.0 (1.0.0+8.4.0 available)
+  dart_style 3.1.1 (3.1.3 available)
+  flutter_lints 5.0.0 (6.0.0 available)
+  flutter_secure_storage_linux 1.2.3 (2.0.1 available)
+  flutter_secure_storage_macos 3.1.3 (4.0.0 available)
+  flutter_secure_storage_platform_interface 1.1.2 (2.0.1 available)
+  flutter_secure_storage_web 1.2.1 (2.0.0 available)
+  flutter_secure_storage_windows 3.1.2 (4.0.0 available)
+  js 0.6.7 (0.7.2 available)
+  lints 5.1.1 (6.0.0 available)
+  matcher 0.12.17 (0.12.18 available)
+  material_color_utilities 0.11.1 (0.13.0 available)
+  meta 1.16.0 (1.17.0 available)
+  mockito 5.5.0 (5.6.1 available)
+  source_gen 3.1.0 (4.1.1 available)
+  test 1.26.2 (1.28.0 available)
+  test_api 0.7.6 (0.7.8 available)
+  test_core 0.6.11 (0.6.14 available)
+Got dependencies!
+30 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Analyzing chat...                                                       
+
+warning • Don't invoke 'print' in production code • lib/main.dart:10:3 • avoid_print
+warning • Don't invoke 'print' in production code • lib/main.dart:49:7 • avoid_print
+
+2 issues found. (ran in 0.7s)
