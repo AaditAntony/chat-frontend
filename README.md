@@ -141,3 +141,5 @@ Got dependencies!
 Try `flutter pub outdated` for more information.
 Analyzing chat...                                                       
 No issues found! (ran in 0.7s)
+
+# auth-provider
