@@ -1,15 +1,42 @@
 import 'package:flutter/material.dart';
 
 import 'core/constants/app_constants.dart';
+import 'core/service/api_service.dart';
+import 'core/service/auth_service.dart';
 import 'core/service/storage_service.dart';
 
+Future<void> testServices() async {
+  debugPrint('=== Testing Services ==='); // Use debugPrint instead of print
+
+  try {
+    // 1. Test Storage
+    final storage = StorageService();
+    await storage.init();
+    debugPrint('✅ StorageService initialized');
+
+    // 2. Test API Service
+    final api = ApiService();
+    debugPrint('✅ ApiService initialized with baseUrl: ${AppConstants.baseUrl}');
+
+    // 3. Test Auth Service - actually USE it
+    final auth = AuthService(apiService: api, storageService: storage);
+    final isLoggedIn = await auth.isLoggedIn();
+    debugPrint('✅ AuthService initialized - User logged in: $isLoggedIn');
+
+    debugPrint('=== All services tested successfully ===');
+  } catch (e) {
+    debugPrint('❌ Error testing services: $e');
+  }
+}
 Future<void> testStorage() async {  // ← Returns Future<void>!
   final storage = StorageService();
   await storage.init();
   await storage.saveUsername('testuser');
-  print('Storage test completed');
+  debugPrint('Storage test completed');
 }
 void main() async{
+  //2
+  testServices();
   // Temporary test
   await testStorage();
   runApp(const MyApp());
@@ -46,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() {
     setState(() {
       _counter++;
-      print(AppConstants.baseUrl);
+      debugPrint(AppConstants.baseUrl);
     });
   }
 
