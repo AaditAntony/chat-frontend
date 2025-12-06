@@ -8,7 +8,7 @@ import 'storage_service.dart';
 class AuthService {
   final ApiService _apiService;
   final StorageService _storageService;
-
+  ApiService get apiService => _apiService;
   AuthService({
     required ApiService apiService,
     required StorageService storageService,
