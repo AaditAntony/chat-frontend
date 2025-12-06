@@ -99,3 +99,5 @@ the apiService section is added in the service of the core section
 
 # core/service/-auth_service 
 the auth service is added in the core section of the service
+
+# test-service 
