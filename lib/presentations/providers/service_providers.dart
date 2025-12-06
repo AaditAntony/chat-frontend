@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'api_service.dart';
-import 'storage_service.dart';
+import '../../core/service/api_service.dart';
+import '../../core/service/storage_service.dart';
 
 
 // Service Providers
