@@ -152,3 +152,4 @@ the code has been pushed
 presentation/providers/-auth-providers
 we have updated the main.dart file to add the providerscope
 addded the riverpod generator code auth_provider.dart
+added the riverpod genrator code in the service_provider.dart
