@@ -1,49 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/providers.dart';
-import 'register_screen.dart';
 
-class LoginScreen extends ConsumerStatefulWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends ConsumerStatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  ConsumerState<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends ConsumerState<LoginScreen> {
+class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   @override
   void dispose() {
     _usernameController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
-  Future<void> _handleLogin() async {
+  Future<void> _handleRegister() async {
     if (_formKey.currentState!.validate()) {
       try {
-        await ref.read(authProvider.notifier).login(
+        await ref.read(authProvider.notifier).register(
           _usernameController.text.trim(),
           _passwordController.text.trim(),
         );
-        // Navigation will be handled by auth state changes
+        // Auto-login after registration
       } catch (e) {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login failed: $e')),
+          SnackBar(content: Text('Registration failed: $e')),
         );
       }
     }
   }
 
-  void _navigateToRegister() {
-    Navigator.push(
-      context,
-      MaterialPageRoute<RegisterScreen>(builder: (context) => const RegisterScreen()),
-    );
+  void _navigateToLogin() {
+    Navigator.pop(context);
   }
 
   @override
@@ -52,7 +50,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text('Register'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -72,6 +70,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter username';
                   }
+                  if (value.length < 3) {
+                    return 'Username must be at least 3 characters';
+                  }
                   return null;
                 },
               ),
@@ -88,6 +89,25 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter password';
                   }
+                  if (value.length < 6) {
+                    return 'Password must be at least 6 characters';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _confirmPasswordController,
+                decoration: const InputDecoration(
+                  labelText: 'Confirm Password',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.lock),
+                ),
+                obscureText: true,
+                validator: (value) {
+                  if (value != _passwordController.text) {
+                    return 'Passwords do not match';
+                  }
                   return null;
                 },
               ),
@@ -96,16 +116,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 const CircularProgressIndicator()
               else
                 ElevatedButton(
-                  onPressed: _handleLogin,
+                  onPressed: _handleRegister,
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(double.infinity, 50),
                   ),
-                  child: const Text('Login'),
+                  child: const Text('Register'),
                 ),
               const SizedBox(height: 16),
               TextButton(
-                onPressed: _navigateToRegister,
-                child: const Text('Don\'t have an account? Register'),
+                onPressed: _navigateToLogin,
+                child: const Text('Already have an account? Login'),
               ),
               if (authState.error != null)
                 Padding(
