@@ -161,3 +161,4 @@ the login screen has been implemented
 the code has been pushed
 
 # presentation/views/-register_screen
+the code of the register screen has been implemented
