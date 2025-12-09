@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'core/constants/app_constants.dart';
-import 'core/service/api_service.dart';
-import 'core/service/auth_service.dart';
-import 'core/service/storage_service.dart';
+import 'core/services/api_service.dart';
+import 'core/services/auth_service.dart';
+import 'core/services/storage_service.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 Future<void> testServices() async {
   debugPrint('=== Testing Services ==='); // Use debugPrint instead of print
@@ -39,7 +39,7 @@ void main() async{
   testServices();
   // Temporary test
   await testStorage();
-  runApp(const MyApp());
+  runApp( const ProviderScope(child: MyApp()),);
 }
 
 class MyApp extends StatelessWidget {
