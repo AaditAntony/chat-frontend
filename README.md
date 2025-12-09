@@ -164,3 +164,4 @@ the code has been pushed
 the code of the register screen has been implemented
 the code has been modified in the login screen
 currently solved all the issues regarding the login and register screen
+the code has been pushed
