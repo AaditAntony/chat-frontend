@@ -1,106 +1,60 @@
 import 'package:flutter/material.dart';
-import 'core/constants/app_constants.dart';
-import 'core/services/api_service.dart';
-import 'core/services/auth_service.dart';
-import 'core/services/storage_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'core/services/storage_service.dart';
+import 'presentation/providers/providers.dart';
+import 'presentation/views/login_screen.dart';
 
-Future<void> testServices() async {
-  debugPrint('=== Testing Services ==='); // Use debugPrint instead of print
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-  try {
-    // 1. Test Storage
-    final storage = StorageService();
-    await storage.init();
-    debugPrint('✅ StorageService initialized');
-
-    // 2. Test API Service
-    final api = ApiService();
-    debugPrint('✅ ApiService initialized with baseUrl: ${AppConstants.baseUrl}');
-
-    // 3. Test Auth Service - actually USE it
-    final auth = AuthService(apiService: api, storageService: storage);
-    final isLoggedIn = await auth.isLoggedIn();
-    debugPrint('✅ AuthService initialized - User logged in: $isLoggedIn');
-
-    debugPrint('=== All services tested successfully ===');
-  } catch (e) {
-    debugPrint('❌ Error testing services: $e');
-  }
-}
-Future<void> testStorage() async {  // ← Returns Future<void>!
+  // Initialize storage first
   final storage = StorageService();
   await storage.init();
-  await storage.saveUsername('testuser');
-  debugPrint('Storage test completed');
-}
-void main() async{
-  //2
-  testServices();
-  // Temporary test
-  await testStorage();
-  runApp( const ProviderScope(child: MyApp()),);
+
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authState = ref.watch(authProvider);
+
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Chat App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        primarySwatch: Colors.blue,
+        useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: authState.isLoading
+          ? const Scaffold(body: Center(child: CircularProgressIndicator()))
+          : authState.isAuthenticated
+          ? const MyHomePage(title: 'Chat App')  // We'll create this next
+          : const LoginScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
+// Temporary home page -replace with chat screens
+class MyHomePage extends StatelessWidget {
   final String title;
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-      debugPrint(AppConstants.baseUrl);
-    });
-  }
+  const MyHomePage({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text(title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
+      body: const Center(
+        child: Text('Welcome to Chat App!'),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
