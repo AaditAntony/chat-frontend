@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'core/services/api_service.dart';
 import 'core/services/storage_service.dart';
 import 'presentation/providers/providers.dart';
 import 'presentation/views/login_screen.dart';
@@ -10,6 +11,7 @@ void main() async {
   // Initialize storage first
   final storage = StorageService();
   await storage.init();
+  testAuthEndpoints();
 
   runApp(
     const ProviderScope(
@@ -58,3 +60,40 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+
+// import 'dart:io';
+// import 'dart:convert';
+//
+// void main() async {
+//   print('🔍 Testing connection...');
+//
+//   final client = HttpClient();
+//
+//   try {
+//     final request = await client.getUrl(
+//         Uri.parse('http://192.168.18.56:8080/api/test/echo')
+//     );
+//
+//     print('📤 Request sent...');
+//     final response = await request.close();
+//
+//     print('📥 Response received!');
+//     print('Status: ${response.statusCode}');
+//
+//     final responseBody = await response.transform(utf8.decoder).join();
+//     print('Body: $responseBody');
+//
+//     if (response.statusCode == 200) {
+//       print('✅ SUCCESS: Backend is accessible!');
+//     } else {
+//       print('❌ FAILED: Status ${response.statusCode}');
+//     }
+//   } catch (e) {
+//     print('❌ ERROR: $e');
+//     print('📌 Full error:');
+//     print(e.toString());
+//   } finally {
+//     client.close();
+//   }
+// }
+
