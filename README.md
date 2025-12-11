@@ -180,4 +180,4 @@ the app constant has been change
 the android manifest.xml file has been changed
 
 backend changes
-the security configuration file has been modifed
+the security configuration file has been modified
