@@ -181,3 +181,4 @@ the android manifest.xml file has been changed
 
 backend changes
 the security configuration file has been modified
+the application properties has been modeifed 
