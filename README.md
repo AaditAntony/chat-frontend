@@ -172,3 +172,4 @@ the code has been pushed
 
 # testing-login-register 
 the base url is changed to http://192.168.18.56:8080
+android url is not working
