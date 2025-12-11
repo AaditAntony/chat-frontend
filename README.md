@@ -183,3 +183,5 @@ backend changes
 the security configuration file has been modified
 the application properties has been modeifed 
 these are the additonal code that has helped to remove the restriction
+server.address=0.0.0.0
+server.port=8080
