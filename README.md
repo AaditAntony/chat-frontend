@@ -175,3 +175,4 @@ the base url is changed to http://192.168.18.56:8080
 android url is not working
 the main dart has been updated
 new method is added in the void main section
+the auth service page const of additional  method 
