@@ -176,3 +176,4 @@ android url is not working
 the main dart has been updated
 new method is added in the void main section
 the auth service page const of additional  method 
+the app constant has been changed
