@@ -11,7 +11,7 @@ void main() async {
   // Initialize storage first
   final storage = StorageService();
   await storage.init();
-  testAuthEndpoints();
+
 
   runApp(
     const ProviderScope(
