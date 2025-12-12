@@ -194,3 +194,4 @@ the code has been pushed
 the websocket service code has been modified
 the websocket provider code has been modeifed
 removed a package in the main
+use the flutter analyze and all the issue has been solved
