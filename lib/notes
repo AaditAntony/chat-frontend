@@ -51,3 +51,13 @@
  }
 
  above is the code for testing weather the api is working or not
+
+
+
+ ---------------
+
+ below is the special command to flutter analyze 2>&1 | grep -A5 -B5 "error"
+                                 flutter analyze - Runs the Dart analyzer
+                                 2>&1 - Redirects error messages to standard output
+                                 | - Pipes the output to the next command
+                                 grep -A5 -B5 "error" - Shows only lines containing "error", plus 5 lines before and after for context
