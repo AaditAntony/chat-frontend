@@ -210,3 +210,4 @@ the test screen has been updated
 the main has been updated
 the phone has been tested
 the auth is working fine the data is reciving on the backend
+the websocket connection is also working 
