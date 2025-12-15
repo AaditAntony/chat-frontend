@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../core/services/web_socket_service.dart';
+import 'auth_provider.dart';
 
 part 'web_socket_provider.g.dart';
 
@@ -43,12 +44,23 @@ class WebSocketNotifier extends _$WebSocketNotifier {
   }
 
   // Connect to WebSocket
+  // In web_socket_provider.dart, update the connect method:
   Future<void> connect(String token) async {
     state = state.copyWith(isLoading: true, error: null);
 
     try {
       final webSocketService = ref.read(webSocketServiceProvider);
       await webSocketService.connect(token);
+
+      // Get username from auth state
+      final authState = ref.read(authProvider);
+      final username = authState.user?.username;
+
+      if (username != null) {
+        // Subscribe to messages after connection
+        webSocketService.subscribeToPublicMessages();
+        webSocketService.subscribeToPrivateMessages(username);
+      }
 
       state = state.copyWith(
         isConnected: true,

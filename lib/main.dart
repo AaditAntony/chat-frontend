@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/services/storage_service.dart';
 import 'presentation/providers/providers.dart';
 import 'presentation/views/login_screen.dart';
+import 'presentation/views/test_web_socket_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +36,7 @@ class MyApp extends ConsumerWidget {
       home: authState.isLoading
           ? const Scaffold(body: Center(child: CircularProgressIndicator()))
           : authState.isAuthenticated
-          ? const MyHomePage(title: 'Chat App')  // We'll create this next
+          ? const TestWebSocketScreen()  // We'll create this next
           : const LoginScreen(),
     );
   }
