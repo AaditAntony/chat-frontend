@@ -200,3 +200,4 @@ use the flutter analyze and all the issue has been solved
 the provider of the websocketprovider has been exported
 
 #  test-providers
+the websocket connection is working 
