@@ -12,20 +12,45 @@ class WebSocketService {
   Future<void> connect(String token) async {
     try {
       final wsUrl = AppConstants.wsUrl;
+      print('🔄 Connecting to: $wsUrl');
 
-      // Create WebSocket connection with authentication header
+      // Clean token
+      String cleanToken = token;
+      if (cleanToken.startsWith('Bearer ')) {
+        cleanToken = cleanToken.substring(7);
+      }
+
+      // SIMPLE CONNECTION - Remove Uri.parse()
       _channel = IOWebSocketChannel.connect(
-        wsUrl,
+        wsUrl, // Use string directly, NOT Uri.parse()
         headers: {
-          if (token.isNotEmpty) 'Authorization': 'Bearer $token',
-          'Origin': 'http://localhost',
+          'Authorization': 'Bearer $cleanToken',
         },
       );
 
-      // Send STOMP CONNECT frame
-      _channel?.sink.add('CONNECT\naccept-version:1.2\nheart-beat:10000,10000\n\n\u0000');
+      print('✅ WebSocket channel created');
+
+      // Listen for CONNECTED response
+      _channel!.stream.listen(
+            (message) {
+          print('📥 RAW: $message');
+          if (message.toString().contains('CONNECTED')) {
+            print('🎉 STOMP Connected!');
+          }
+        },
+        onError: (error) {
+          print('❌ WebSocket error: $error');
+        },
+        onDone: () {
+          print('🔌 Connection closed');
+        },
+      );
+
+      // Send CONNECT frame
+      _channel!.sink.add('CONNECT\naccept-version:1.2\n\n\x00');
 
     } catch (e) {
+      print('❌ Connection failed: $e');
       rethrow;
     }
   }

@@ -47,7 +47,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     final authState = ref.watch(authProvider);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Register'),
