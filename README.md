@@ -208,3 +208,4 @@ the websocket code has been updated
 the websocket provider has been updated
 the test screen has been updated
 the main has been updated
+the phone has been tested
