@@ -201,3 +201,4 @@ the provider of the websocketprovider has been exported
 
 #  test-providers
 the websocket connection is working 
+the chat is not working
