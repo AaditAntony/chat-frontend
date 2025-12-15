@@ -204,3 +204,4 @@ the websocket connection is working
 the chat is not working
 
 # websocket-serviceß
+the websocket code has been updated
