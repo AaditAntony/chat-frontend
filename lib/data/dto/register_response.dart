@@ -1,7 +1,7 @@
 class RegisterResponse {
   final int? id;
   final String username;
-  final String? password; // Note: Backend might not return password
+  final String? password;
 
   RegisterResponse({
     this.id,
