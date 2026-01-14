@@ -214,3 +214,4 @@ the websocket connection is also working
 the message has been sended but not recived
 
 # working on phone
+has started the section
