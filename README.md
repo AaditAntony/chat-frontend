@@ -212,3 +212,5 @@ the phone has been tested
 the auth is working fine the data is reciving on the backend
 the websocket connection is also working 
 the message has been sended but not recived
+
+# working on phone
